@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">Pase de lista</h1>
+        <div *ngIf="showError" class="alert alert-danger" role="alert">
+            {{errorMessage}}
+        </div>
+
+        <form [formGroup]="assistanceForm" autocomplete="off" novalidate (ngSubmit)="assistance(assistanceForm.value)">
+            <div class="mb-3 row">
+                <label for="fechaTurnoInicial" class="col-form-label col-sm-2">Turno Inicial:</label>
+                <div class="col-md-5">
+                    <input type="datetime-local" id="fechaTurnoInicial" formControlName="fechaTurnoInicial" class="form-control" />
+                </div>
+                <div class="col-md-5">
+                    <em *ngIf="validateControl('fechaTurnoInicial') && hasError('fechaTurnoInicial', 'required')">Fecha is required</em>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="fechaFinalTurno" class="col-form-label col-sm-2">Turno Final:</label>
+                <div class="col-md-5">
+                    <input type="datetime-local" id="fechaFinalTurno" formControlName="fechaFinalTurno" class="form-control" />
+                </div>
+                <div class="col-md-5">
+                    <em *ngIf="validateControl('fechaFinalTurno') && hasError('fechaFinalTurno', 'required')">Fecha is required</em>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="workplaceId" class="col-form-label col-sm-2">Workplace ID:</label>
+                <div class="col-md-5">
+                    <input type="number" id="workplaceId" formControlName="workplaceId" class="form-control" />
+                </div>
+                <div class="col-md-5">
+                    <em *ngIf="validateControl('workplaceId') && hasError('workplaceId', 'required')">Workplace is required</em>
+                </div>
+            </div>
+            <br>
+            <div class="mb-3 row">
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-info" [disabled]="!assistanceForm.valid">Subir</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
